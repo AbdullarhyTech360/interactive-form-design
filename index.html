@@ -11,35 +11,59 @@
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
     <title>Frontend Mentor | Interactive card details form</title>
+    <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
     <div class="container">
-      <div class="theme"></div>
-      <form action="#">
-        <div class="form-group">
-          <label for="cardholder-name">Cardholder Name</label>
-          <input type="text" id="cardholder-name" placeholder="e.g. Jane Appleseed" />
-        </div>
-        <div class="form-group">
-          <label for="card-number">Card Number</label>
-          <input type="text" id="card-number" placeholder="e.g. 1234 5678 9123 0000" />
-        </div>
-        <div class="form-group date-cvc">
-          <div id="exp-date-container" class="">
-            <label for="exp-date">Exp. Date (MM/YY)</label>
-            <div id="exp-date" class="">
-              <input type="text" id="exp-month" placeholder="MM" />
-              <input type="text" id="exp-year" placeholder="YY" />
+      <div class="theme">
+        <img id="mobile-theme" src="images/bg-main-mobile.png" alt="" />
+        <img id="desktop-theme" src="images/bg-main-desktop.png" alt="" />
+      </div>
+      <div class="inner-container">
+        <form id="form" action="#">
+          <div class="form-group">
+            <label for="cardholder-name">Cardholder Name</label>
+            <input
+              type="text"
+              id="cardholder-name"
+              placeholder="e.g. Jane Appleseed"
+            />
+            <span class="error-message">Wrong format, numbers only</span>
+          </div>
+          <div class="form-group">
+            <label for="card-number">Card Number</label>
+            <input
+              type="text"
+              id="card-number"
+              placeholder="e.g. 1234 5678 9123 0000"
+            />
+            <span class="error-message">Wrong format, numbers only</span>
+          </div>
+          <div class="form-group date-cvc">
+            <div id="exp-date-container" class="">
+              <label for="exp-date">Exp. Date (MM/YY)</label>
+              <div id="exp-date" class="">
+                <input type="text" id="exp-month" placeholder="MM" />
+                <input type="text" id="exp-year" placeholder="YY" />
+              </div>
+              <span class="error-message">Wrong format, numbers only</span>
+            </div>
+            <div id="cvc-container" class="">
+              <label for="cvc">CVC</label>
+              <input class="" type="text" id="cvc" placeholder="e.g. 123" />
+              <span class="error-message">Wrong format, numbers only</span>
             </div>
           </div>
-          <div id="cvc-container" class="">
-            <label for="cvc">CVC</label>
-            <input type="text" id="cvc" placeholder="e.g. 123" />
-          </div>
-        </div>
-      </form>
+          <button id="submit-button" type="submit">Confirm</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
