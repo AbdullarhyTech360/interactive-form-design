@@ -26,6 +26,20 @@
         <img id="mobile-theme" src="images/bg-main-mobile.png" alt="" />
         <img id="desktop-theme" src="images/bg-main-desktop.png" alt="" />
       </div>
+      <div class="card">
+        <img id="back-card" src="images/bg-card-back.png" alt="back-card">
+        <img id="front-card" src="images/bg-card-front.png" alt="front-card">
+        <div class="front-info">
+          <svg id="circle" width="84" height="47" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="23.478" cy="23.5" rx="23.478" ry="23.5" fill="#fff"/><path d="M83.5 23.5c0 5.565-4.507 10.075-10.065 10.075-5.559 0-10.065-4.51-10.065-10.075 0-5.565 4.506-10.075 10.065-10.075 5.558 0 10.065 4.51 10.065 10.075Z" stroke="#fff"/></svg>
+          <span class="front-infos">
+            <p class="front-header">0000 0000 0000 0000</p>
+            <p class="front-footer">
+              <span>jane appleseed</span>
+              <span>00/00</span>
+            </p>
+          </span>
+        </div>
+      </div>
       <div class="inner-container">
         <form id="form" action="#">
           <div class="form-group">
@@ -50,8 +64,8 @@
             <div id="exp-date-container" class="">
               <label for="exp-date">Exp. Date (MM/YY)</label>
               <div id="exp-date" class="">
-                <input type="text" id="exp-month" placeholder="MM" />
-                <input type="text" id="exp-year" placeholder="YY" />
+                <input class="exp-input" type="number" id="exp-month" placeholder="MM" />
+                <input class="exp-input" type="number" id="exp-year" placeholder="YY" />
               </div>
               <span class="error-message">Wrong format, numbers only</span>
             </div>
@@ -65,5 +79,6 @@
         </form>
       </div>
     </div>
+    <script src="scripts/script.js"></script>
   </body>
 </html>

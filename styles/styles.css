@@ -17,20 +17,67 @@
   row-gap: 1rem;
 }
 
+.card {
+  width: 340px;
+  position: absolute;
+  display: flex;
+  height: 200px;
+  flex-direction: column;
+  top: 20px;
+}
+.card img {
+  width: 300px;
+  position: relative;
+}
+.card #front-card {
+  top: -72px;
+  left: 10px;
+}
+.card #back-card {
+  left: 50px;
+}
+.card .front-info {
+  position: relative;
+  top: -215px;
+  left: 30px;
+}
+.card .front-info #circle {
+  scale: 0.7;
+  margin-top: -10px;
+  margin-left: -14px;
+}
+.card .front-info .front-infos {
+  color: hsl(0, 0%, 100%);
+}
+.card .front-info .front-infos .front-header {
+  display: block;
+  margin-top: 30px;
+  word-spacing: 10px;
+  letter-spacing: 2px;
+}
+.card .front-info .front-infos .front-footer {
+  display: flex;
+  -moz-column-gap: 130px;
+       column-gap: 130px;
+  margin-top: 15px;
+  font-size: 0.7em;
+  text-transform: uppercase;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
   row-gap: 5px;
 }
 .form-group .error-message {
-  color: hsl(0, 100%, 66%);
+  color: hsl(0, 100%, 66%) !important;
   font-size: 12px;
   font-weight: 700;
   display: none;
   margin-top: 5px;
 }
 .form-group .error-input {
-  border: 1px solid hsl(0, 100%, 66%);
+  border: 1px solid hsl(0, 100%, 66%) !important;
 }
 .form-group label {
   text-transform: uppercase;
@@ -38,6 +85,16 @@
   color: hsl(278, 68%, 11%);
   letter-spacing: 1px;
   font-weight: 700;
+}
+.form-group input[type=number]::-webkit-inner-spin-button,
+.form-group input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form-group input[type=number] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
 }
 .form-group input {
   padding: 10px;
@@ -48,12 +105,21 @@
   display: block;
   outline: none;
 }
+.form-group input:hover {
+  border: double 1px transparent;
+  background-image: linear-gradient(white, white), linear-gradient(135deg, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 8px;
+  cursor: pointer;
+}
 .form-group input:focus {
   border: double 1px transparent;
   background-image: linear-gradient(white, white), linear-gradient(135deg, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
   background-origin: border-box;
   background-clip: padding-box, border-box;
   border-radius: 8px;
+  cursor: pointer;
 }
 .form-group input::-moz-placeholder {
   color: hsl(270, 3%, 87%);
@@ -74,6 +140,7 @@
   color: hsl(0, 0%, 100%);
   font-size: 15px;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .date-cvc {
@@ -99,17 +166,41 @@
 @media screen and (min-width: 768px) {
   #desktop-theme {
     display: block;
+    width: 310px;
+    height: 100vh;
+    position: relative;
   }
   #mobile-theme {
     display: none;
   }
+  .card {
+    top: 20%;
+    left: 5%;
+  }
+  .card img {
+    width: 320px;
+  }
+  .card #back-card {
+    top: 200px;
+    left: 100px;
+  }
+  .card #front-card {
+    top: -180px;
+  }
+  .card .front-info {
+    top: -330px;
+  }
   .container {
     display: flex;
     height: 100vh;
+    overflow: hidden;
   }
   #form {
-    width: 400px;
+    width: min(350px, 90%);
+    max-width: 400px;
     margin: 30px auto;
+    padding-left: 220px;
+    box-sizing: content-box;
   }
   .inner-container {
     width: 100%;

@@ -13,7 +13,7 @@ $active-input-border: linear-gradient(
   hsl(249, 99%, 64%),
   hsl(278, 94%, 30%)
 );
-$error-input-border: hsl(0, 100%, 66%);
+$error-input-border: hsl(0, 100%, 66%) !important;
 
 // Neutral colors
 $white: hsl(0, 0%, 100%);
@@ -26,6 +26,17 @@ $font-size: 18px;
 $font-weight-regular: 500;
 $font-weight-bold: 700;
 
+// Defining mixins
+@mixin input-state() {
+  border: double 1px transparent;
+  background-image: linear-gradient(white, white),
+    linear-gradient(135deg, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 // Media queries starting from the smallest to the largest screen (375px, 1440px)
 #desktop-theme {
   display: none;
@@ -37,6 +48,52 @@ $font-weight-bold: 700;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+}
+
+.card {
+  width: 340px;
+  position: absolute;
+  display: flex;
+  height: 200px;
+  flex-direction: column;
+  top: 20px;
+  img {
+    width: 300px;
+    position: relative;
+  }
+  #front-card {
+    top: -72px;
+    left: 10px;
+  }
+  #back-card {
+    left: 50px;
+  }
+  .front-info {
+    position: relative;
+    top: -215px;
+    left: 30px;
+    #circle {
+      scale: 0.7;
+      margin-top: -10px;
+      margin-left: -14px;
+    }
+    .front-infos {
+      color: $white;
+      .front-header {
+        display: block;
+        margin-top: 30px;
+        word-spacing: 10px;
+        letter-spacing: 2px;
+      }
+      .front-footer {
+        display: flex;
+        column-gap: 130px;
+        margin-top: 15px;
+        font-size: 0.7em;
+        text-transform: uppercase;
+      }
+    }
+  }
 }
 
 .form-group {
@@ -62,6 +119,17 @@ $font-weight-bold: 700;
     letter-spacing: 1px;
     font-weight: $font-weight-bold;
   }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    appearance: textfield;
+  }
+
   input {
     padding: 10px;
     border-radius: 8px;
@@ -71,13 +139,11 @@ $font-weight-bold: 700;
     display: block;
     outline: none;
 
+    &:hover {
+      @include input-state();
+    }
     &:focus {
-      border: double 1px transparent;
-      background-image: linear-gradient(white, white),
-        linear-gradient(135deg, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      border-radius: 8px;
+      @include input-state();
     }
     &::placeholder {
       color: $light-grayish-violet;
@@ -95,6 +161,7 @@ $font-weight-bold: 700;
   color: $white;
   font-size: 15px;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .date-cvc {
@@ -115,26 +182,46 @@ $font-weight-bold: 700;
       width: 100%;
     }
   }
-  // #exp-date-container, #cvc-container{
-  //     border: 1px solid $error-input-border;
-  // }
 }
 
 @media screen and (min-width: 768px) {
   #desktop-theme {
     display: block;
+    width: 310px;
+    height: 100vh;
+    position: relative;
   }
   #mobile-theme {
     display: none;
   }
+  .card {
+    top: 20%;
+    left: 5%;
+    img {
+      width: 320px;
+    }
+    #back-card {
+      top: 200px;
+      left: 100px;
+    }
+    #front-card {
+      top: -180px;
+    }
+    .front-info {
+      top: -330px;
+    }
+  }
   .container {
     display: flex;
-    // border: 1px solid $light-grayish-violet;
     height: 100vh;
+    overflow: hidden;
   }
   #form {
-    width: 400px;
+    width: min(350px, 90%);
+    max-width: 400px;
     margin: 30px auto;
+    padding-left: 220px;
+    box-sizing: content-box;
   }
   .inner-container {
     width: 100%;
@@ -142,4 +229,7 @@ $font-weight-bold: 700;
     justify-content: center;
     align-items: center;
   }
+}
+
+@media screen and (min-width: 1000px) {
 }
