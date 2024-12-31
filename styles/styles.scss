@@ -37,61 +37,131 @@ $font-weight-bold: 700;
   cursor: pointer;
 }
 
+@mixin atm-card($url) {
+  height: fit-content;
+  background-image: url($url);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  aspect-ratio: 1/0.57;
+  border-radius: 8px;
+  width: 290px;
+}
+
+@mixin center-both ($fex-direction, $justify-content, $align-items) {
+  display: flex;
+  flex-direction: $fex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin custom-button(){
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: $very-dark-violet;
+  outline: none;
+  color: $white;
+  font-size: 15px;
+  margin-top: 20px;
+  cursor: pointer;
+  &:hover{
+    background: lighten($color: $very-dark-violet, $amount: 5%);
+  }
+}
 // Media queries starting from the smallest to the largest screen (375px, 1440px)
+.theme{
+  background: $very-dark-violet;
+}
+
 #desktop-theme {
   display: none;
 }
 
+.inner-container{
+  @include center-both(row, center, center);
+}
+
 #form {
   background-color: $white;
-  padding: 4rem 1.5rem;
+  padding: 6rem 1.5rem;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+  width: min(100%, 375px);
+  max-width: 500px;
+  position: relative;
+  z-index: 0;
 }
 
-.card {
-  width: 340px;
+.thank-you-container {
+  width: min(100%, 375px);
+  @include center-both(column, center, center);
+  display: none;
+  row-gap: 1rem;
+  padding: 4rem 1.5rem;
+  text-align: center;
+  img{
+    width: 65px;
+  }
+  h2 {
+    color: $very-dark-violet;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+  p {
+    color: $dark-grayish-violet;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  #continue-button {
+    @include custom-button();
+  }
+}
+
+.card{
+  color: $white;
+  text-transform: uppercase;
   position: absolute;
-  display: flex;
-  height: 200px;
-  flex-direction: column;
-  top: 20px;
-  img {
-    width: 300px;
-    position: relative;
-  }
-  #front-card {
-    top: -72px;
-    left: 10px;
-  }
-  #back-card {
-    left: 50px;
-  }
+  z-index: 1;
+  width: 100%;
+  top: 30px;
+  @include center-both(column-reverse, center, center);
   .front-info {
-    position: relative;
-    top: -215px;
-    left: 30px;
+    @include atm-card("../images/bg-card-front.png");
+    margin-top: -72.5px;
+    margin-left: -50px;
+    padding: 1rem;
     #circle {
       scale: 0.7;
-      margin-top: -10px;
       margin-left: -14px;
     }
-    .front-infos {
-      color: $white;
-      .front-header {
-        display: block;
-        margin-top: 30px;
-        word-spacing: 10px;
+    .front-infos{
+      display: block;
+      .front-header{
+        margin-top: 20px;
+        font-size: 1.2rem;
+        word-spacing: 2px;
         letter-spacing: 2px;
       }
-      .front-footer {
-        display: flex;
-        column-gap: 130px;
-        margin-top: 15px;
-        font-size: 0.7em;
-        text-transform: uppercase;
+      .front-footer{
+        margin-top: 20px;
+        @include center-both(row, space-between, center);
+        font-size: 0.7rem;
       }
+    }
+  }
+  .back-info {
+    @include atm-card("../images/bg-card-back.png");
+    @include center-both(column, center, center);
+    margin-right: -50px;
+    .back-header{
+      @include center-both(row, right, center);
+      width: 100%;
+      font-size: 0.7rem;
+      margin-right: 60px;
     }
   }
 }
@@ -100,7 +170,6 @@ $font-weight-bold: 700;
   display: flex;
   flex-direction: column;
   row-gap: 5px;
-
   .error-message {
     color: $error-input-border;
     font-size: 12px;
@@ -151,17 +220,9 @@ $font-weight-bold: 700;
     }
   }
 }
+
 #submit-button {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid $very-dark-violet;
-  background-color: $very-dark-violet;
-  outline: none;
-  color: $white;
-  font-size: 15px;
-  margin-top: 20px;
-  cursor: pointer;
+  @include custom-button();
 }
 
 .date-cvc {
@@ -194,42 +255,60 @@ $font-weight-bold: 700;
   #mobile-theme {
     display: none;
   }
-  .card {
-    top: 20%;
-    left: 5%;
-    img {
-      width: 320px;
-    }
-    #back-card {
-      top: 200px;
-      left: 100px;
-    }
-    #front-card {
-      top: -180px;
-    }
-    .front-info {
-      top: -330px;
+  .card{
+    top: 35%;
+    left: 20%;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 30%;
+    // background: #000;
+    z-index: 2;
+    *{
+      margin: 0;
     }
   }
   .container {
     display: flex;
     height: 100vh;
+    position: relative;
     overflow: hidden;
   }
   #form {
-    width: min(350px, 90%);
+    z-index: 1;
+    width: min(400px, 90%);
+    width: 100%;
     max-width: 400px;
-    margin: 30px auto;
-    padding-left: 220px;
+    margin: 20px auto;
+    padding-left: 160px;
     box-sizing: content-box;
   }
   .inner-container {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include center-both(row, center, center);
+  }
+  .thank-you-container{
+    z-index: 1;
   }
 }
 
 @media screen and (min-width: 1000px) {
+  .card{
+    left: 100px;
+  }
+}
+
+@media screen and (min-width: 828px) {
+  #form {
+    padding-left: 200px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card{
+    left: 25px;
+  }
+  #form{
+    margin-left: 25px;
+    padding-left: 10px;
+  }
 }

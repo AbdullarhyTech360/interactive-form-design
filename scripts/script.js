@@ -1,8 +1,21 @@
 // Handing the form submission
-document.getElementById('form').addEventListener('submit', (e) => {
-    e.preventDefault()
-    validateInputs()
-})
+const form = document.getElementById('form');
+const thankYouContainer = document.querySelector('.thank-you-container');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    validateInputs();
+    // If there are no errors, hide the form and show the thank you message
+    if (errorNumbers() === 0) {
+        // Update the state of the card details
+        const cardDetails = getFormData();
+        document.querySelector('.front-name').innerText = cardDetails.cardName;
+        document.querySelector('.front-header').innerText = cardDetails.cardNmber;
+        document.querySelector('.front-date').innerText = cardDetails.expMonth + '/' + cardDetails.expYear;
+        document.querySelector('.back-header').innerText = cardDetails.cvc;
+        form.style.display = 'none';
+        thankYouContainer.style.display = 'flex';
+    }
+});
 
 // Setting error messages
 const setError = (input, message) => {
@@ -16,7 +29,6 @@ const setError = (input, message) => {
     errorMsg.innerText = message
     errorMsg.style.display = 'block'
     input.classList.add('error-input')
-
 }
 
 // Removing error messages
@@ -38,7 +50,6 @@ const validateInputs = () => {
     // Determining the inputs values
     const cardName = document.getElementById('cardholder-name')
     const cardNmber = document.getElementById('card-number')
-    const expireMonthDate = document.querySelectorAll('.exp-input')
     const cvc = document.getElementById('cvc')
 
     // checking each  input value and displaying the error message
@@ -131,7 +142,6 @@ cardNmber.addEventListener('input', (e) => {
 
     // Format with spaces for display
     let formattedValue = rawValue.replace(/(.{4})/g, '$1 ').trim()
-    console.log(formattedValue.split(' ').join('').length)
     // Show formatted value to user
     e.target.value = formattedValue.toUpperCase()
 })
@@ -141,3 +151,35 @@ cvc.addEventListener('input', (e) => {
     // Remove decimals and non-numeric characters
     e.target.value = e.target.value.replace(/\D/g, '').slice(0, 3);
 });
+
+// Determining number of invalid inputs
+const errorNumbers = () => document.querySelectorAll('.error-input').length;
+
+// Grabbing all the inputs values and returning them as an object
+const getFormData = () => {
+    const cardName = document.getElementById('cardholder-name')
+    const cardNmber = document.getElementById('card-number')
+    const expMonth = document.getElementById('exp-month')
+    const expYear = document.getElementById('exp-year')
+    const cvc = document.getElementById('cvc')
+    const formData = {
+        cardName: cardName.value,
+        cardNmber: cardNmber.value,
+        expMonth: expMonth.value,
+        expYear: expYear.value,
+        cvc: cvc.value
+    }
+    return formData
+}
+
+// Adding event listeners to the continue button to hide the thank you container and show the reset form
+const continueBtn = document.getElementById('continue-button')
+continueBtn.addEventListener('click', (e) => {
+    thankYouContainer.style.display = 'none'
+    document.querySelector('.front-name').innerText = "jane appleseed";
+    document.querySelector('.front-header').innerText = "0000 0000 0000 0000";
+    document.querySelector('.front-date').innerText = "00/00";
+    document.querySelector('.back-header').innerText = "000";
+    form.reset()
+    form.style.display = 'flex'
+})
