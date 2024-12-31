@@ -22,12 +22,12 @@
   </head>
   <body>
     <div class="container">
-      <div class="theme" role="theme">
+      <div class="theme" role="banner">
         <img id="mobile-theme" src="images/bg-main-mobile.png" alt="" />
         <img id="desktop-theme" src="images/bg-main-desktop.png" alt="" />
       </div>
-      <div class="card" role="card">
-        <div class="front-info">
+      <div class="card" aria-labelledby="card-container">
+        <div class="front-info" aria-labelledby="front-card">
           <svg id="circle" width="84" height="47" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="23.478" cy="23.5" rx="23.478" ry="23.5" fill="#fff"/><path d="M83.5 23.5c0 5.565-4.507 10.075-10.065 10.075-5.559 0-10.065-4.51-10.065-10.075 0-5.565 4.506-10.075 10.065-10.075 5.558 0 10.065 4.51 10.065 10.075Z" stroke="#fff"/></svg>
           <span class="front-infos">
             <p class="front-header">0000 0000 0000 0000</p>
@@ -37,56 +37,58 @@
             </p>
           </span>
         </div>
-        <div class="back-info">
+        <div class="back-info" aria-labelledby="back-card">
           <p class="back-header">000</p>
         </div>
       </div>
-      <div class="inner-container">
-        <form id="form" action="#" role="card-form">
-          <div class="form-group">
+      <main class="inner-container" role="main" aria-labelledby="main-container">
+        <form id="form" action="#" role="form">
+          <div class="form-group" aria-labelledby="name-of-the-person">
             <label for="cardholder-name">Cardholder Name</label>
             <input
               type="text"
               id="cardholder-name"
               placeholder="e.g. Jane Appleseed"
+              aria-labelledby="Enter-your-name-here"
             />
             <span class="error-message">Wrong format, numbers only</span>
           </div>
-          <div class="form-group">
+          <div class="form-group" aria-labelledby="card-number-info">
             <label for="card-number">Card Number</label>
             <input
               type="text"
               id="card-number"
               placeholder="e.g. 1234 5678 9123 0000"
+              aria-labelledby="Enter-your-card-nmuber-here"
             />
             <span class="error-message">Wrong format, numbers only</span>
           </div>
-          <div class="form-group date-cvc">
-            <div id="exp-date-container" class="">
+          <div class="form-group date-cvc" aria-labelledby="expiry-date-and-cvc-info">
+            <div id="exp-date-container">
               <label for="exp-date">Exp. Date (MM/YY)</label>
-              <div id="exp-date" class="">
-                <input class="exp-input" type="number" id="exp-month" placeholder="MM" />
-                <input class="exp-input" type="number" id="exp-year" placeholder="YY" />
+              <div id="exp-date">
+                <input aria-labelledby="Enter-card-expiry-month" class="exp-input" type="number" id="exp-month" placeholder="MM" />
+                <input aria-labelledby="Enter-card-expiry-year" class="exp-input" type="number" id="exp-year" placeholder="YY" />
               </div>
               <span class="error-message">Wrong format, numbers only</span>
             </div>
-            <div id="cvc-container" class="">
+            <div id="cvc-container">
               <label for="cvc">CVC</label>
-              <input class="" type="text" id="cvc" placeholder="e.g. 123" />
+              <input aria-labelledby="Enter-card-cvc" type="text" id="cvc" placeholder="e.g. 123" />
               <span class="error-message">Wrong format, numbers only</span>
             </div>
           </div>
-          <button id="submit-button" type="submit">Confirm</button>
+          <button role="button" aria-labelledby="submit-button" id="submit-button" type="submit">Confirm</button>
         </form>
-        <div class="thank-you-container">
-          <div class="">
+        <div class="thank-you-container" role="finishing-page">
+          <div>
             <img src="images/icon-complete.svg" alt="complete-icon" />
           </div>
           <h2>Thank you!</h2>
           <p>We've added your card details</p>
-          <button id="continue-button">Continue</button>
+          <button role="button" aria-labelledby="finishing-button" id="continue-button">Continue</button>
         </div>
-      </div>
+      </main>
     </div>
     <script src="scripts/script.js"></script>
   </body>
